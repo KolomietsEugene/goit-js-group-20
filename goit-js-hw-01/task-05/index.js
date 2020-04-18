@@ -1,4 +1,6 @@
-const country = prompt().toLowerCase();
+const country = prompt(
+  'Введите название страны для отправки поссылки',
+).toLowerCase();
 let price = 0;
 
 switch (country) {
