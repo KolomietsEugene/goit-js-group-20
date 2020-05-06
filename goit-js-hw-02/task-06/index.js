@@ -8,12 +8,15 @@ const makeArray = function() {
     if (input === null) {
       return numbers;
     }
-    if (!Number(input)) {
+    //  fixed
+    const number = Number(input);
+    console.log(typeof number);
+    if (Number.isNaN(number)) {
       alert('Было введено не число, попробуйте еще раз');
       // eslint-disable-next-line no-continue
       continue;
     }
-    numbers.push(Number(input));
+    numbers.push(number);
   }
 };
 

@@ -1,7 +1,10 @@
 const checkForSpam = function(message) {
-  const re = /[\s[\]]/;
-  const arr = message.toLowerCase().split(re);
-  return arr.includes('spam') || arr.includes('sale');
+  // const re = /[\s[\]]/;
+  // const arr = message.toLowerCase().split(re);
+  // return arr.includes('spam') || arr.includes('sale');
+  //  fixed
+  const newString = message.toLowerCase();
+  return newString.includes('spam') || newString.includes('sale');
 };
 
 console.log(checkForSpam('Latest technology news')); // false

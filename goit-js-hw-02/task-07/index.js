@@ -5,14 +5,14 @@ const isLoginValid = function(login) {
 };
 
 const isLoginUnique = function(allLogins = [], login) {
-  return allLogins.includes(login);
+  return !allLogins.includes(login);
 };
 
 const addLogin = function(allLogins, login) {
   if (!isLoginValid(login)) {
     return 'Ошибка! Логин должен быть от 4 до 16 символов';
   }
-  if (isLoginUnique(allLogins, login)) {
+  if (!isLoginUnique(allLogins, login)) {
     return 'Такой логин уже используется!';
   }
   logins.push(login);
