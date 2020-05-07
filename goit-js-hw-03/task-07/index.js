@@ -93,6 +93,6 @@ const account = {
   getTransactionTotal(type) {
     return this.transactions
       .filter(item => item.type === type)
-      .reduce((total, currentValue) => total + currentValue);
+      .reduce((total, currentItem) => total + currentItem.amount, 0);
   },
 };
