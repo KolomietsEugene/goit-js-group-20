@@ -91,6 +91,8 @@ const account = {
    * определенного типа транзакции из всей истории транзакций
    */
   getTransactionTotal(type) {
-    return this.transactions.filter(item => item.type === type);
+    return this.transactions
+      .filter(item => item.type === type)
+      .reduce((total, currentValue) => total + currentValue);
   },
 };
