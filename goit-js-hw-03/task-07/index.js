@@ -54,6 +54,11 @@ const account = {
    * о том, что снятие такой суммы не возможно, недостаточно средств.
    */
   withdraw(amount) {
+    //  fixed
+    if (amount > this.balance) {
+      alert(`Недостаточно денег на счету. На Вашем счету: ${this.balance}`);
+      return;
+    }
     this.balance -= amount;
     this.transactions.push(
       this.createTransaction(amount, Transaction.WITHDRAW),
@@ -73,7 +78,8 @@ const account = {
   getTransactionDetails(id) {
     // eslint-disable-next-line no-restricted-syntax
     for (const item of this.transactions) {
-      if (this.transactions.id === id) {
+      //  that was really stupid by me =) fixed
+      if (item.id === id) {
         return item;
       }
     }
