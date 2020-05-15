@@ -1,9 +1,10 @@
-const Account = function(account = { login: '', email: '' }) {
-  this.account = account;
+const Account = function({ login = '', email = '' }) {
+  this.login = login;
+  this.email = email;
 };
 
 Account.prototype.getInfo = function() {
-  console.log(`Login: ${this.account.login}, Email: ${this.account.email}`);
+  console.log(`Login: ${this.login}, Email: ${this.email}`);
 };
 
 console.log(Account.prototype.getInfo); // function

@@ -8,9 +8,8 @@ class Car {
     console.log(
       `This car is : ${car.isOn ? 'On' : 'Off'},  Maximal speed: ${
         car.maxSpeed
-      }, current speed: ${car.speed}, runned distance is ${
-        car.distance
-      }. Price: ${car.price}`,
+      }, current speed: ${car.speed},
+       runned distance is ${car.distance}. Price: ${car.price}`,
     );
   }
 
@@ -24,15 +23,15 @@ class Car {
    *  isOn - заведен ли автомобиль, значения true или false. Изначально false
    *  distance - общий киллометраж, изначально 0
    */
-  constructor(
+  constructor({
     speed = 0,
     price = 0,
     maxSpeed = 220,
     isOn = false,
     distance = 0,
-  ) {
+  }) {
     this.speed = speed;
-    this.price = price;
+    this._price = price;
     this.maxSpeed = maxSpeed;
     this.isOn = isOn;
     this.distance = distance;
@@ -44,11 +43,11 @@ class Car {
    */
 
   get price() {
-    return this.price;
+    return this._price;
   }
 
   set price(value) {
-    this.price = value;
+    this._price = value;
   }
 
   /*
@@ -66,6 +65,7 @@ class Car {
    */
   turnOff() {
     this.isOn = false;
+    this.speed = 0;
   }
 
   /*
