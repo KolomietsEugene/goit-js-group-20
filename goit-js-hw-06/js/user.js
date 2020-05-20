@@ -102,7 +102,7 @@ const getSortedUniqueSkills = users => {
     .reduce((uniqueSkills, currItem) => {
       if (
         uniqueSkills.length === 0 ||
-        uniqueSkills.some(skill => skill !== currItem)
+        !uniqueSkills.some(skill => skill === currItem)
       ) {
         uniqueSkills.push(currItem);
       }
@@ -111,6 +111,6 @@ const getSortedUniqueSkills = users => {
     .sort();
 };
 
-console.log('-------------------------Task 10----------------------');
+console.log('-------------------------Task 10-----------------------');
 console.log(getSortedUniqueSkills(outerUsers));
 // [ 'adipisicing', 'amet', 'anim', 'commodo', 'culpa', 'elit', 'ex', 'ipsum', 'irure', 'laborum', 'lorem', 'mollit', 'non', 'nostrud', 'nulla', 'proident', 'tempor', 'velit', 'veniam' ]
