@@ -25,8 +25,12 @@ const generateImgElement = function(item) {
 const generateGalleryItemsElements = function(galleryItems = []) {
   return galleryItems
     .map(item => `<li>${generateImgElement(item)}</li>`)
-    .join();
+    .join('');
 };
 
+// fixes
 const galleryElem = document.querySelector('#gallery');
-galleryElem.innerHTML = generateGalleryItemsElements(images);
+galleryElem.insertAdjacentHTML(
+  'beforeend',
+  generateGalleryItemsElements(images),
+);

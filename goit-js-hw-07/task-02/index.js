@@ -10,14 +10,14 @@ const ingredients = [
 ];
 
 const generateIngredientsElemments = function(ingredientsList = []) {
-  return ingredientsList
-    .map(
-      item => `
-  <li>${item}</li>`,
-    )
-    .join('');
+  // fixes
+  return ingredientsList.map(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    return li;
+  });
 };
 
 const ingredientsListElem = document.querySelector('#ingredients');
 
-ingredientsListElem.innerHTML = generateIngredientsElemments(ingredients);
+ingredientsListElem.append(...generateIngredientsElemments(ingredients));

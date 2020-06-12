@@ -2,16 +2,16 @@
 
 const inputElem = document.querySelector('#validation-input');
 
-const replace = (oldClass, newCLass) => {
-  inputElem.classList.add(oldClass);
-  inputElem.classList.toggle(newCLass);
+const setClass = (toSet, toRemove) => {
+  inputElem.classList.add(toSet);
+  inputElem.classList.remove(toRemove);
 };
 
 const handle = e => {
-  if (e.target.value < e.target.dataset.length) {
-    replace('invalid', 'valid');
+  if (e.target.value.length !== Number(e.target.dataset.length)) {
+    setClass('invalid', 'valid');
   } else {
-    replace('valid', 'invalid');
+    setClass('valid', 'invalid');
   }
 };
 
