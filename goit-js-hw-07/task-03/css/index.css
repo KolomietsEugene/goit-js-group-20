@@ -1,0 +1,15 @@
+.flex-container {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+li {
+  margin: 15px;
+}
+
+.gallery-item {
+  width: 400px;
+  height: 300px;
+}
