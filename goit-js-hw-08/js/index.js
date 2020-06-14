@@ -63,13 +63,18 @@ const renderOpenLightBox = (url, alt) => {
 const renderCloseLightBox = () => {
   renderModalImgAttrSet('', '');
   modalElem.classList.remove('is-open');
+  // eslint-disable-next-line no-use-before-define
+  document.removeEventListener('keyup', handlerKeyboardClick);
 };
 
 const renderChangeImg = index => {
-  //   console.log(currentImgIndex);
-  const newIndex =
-    // eslint-disable-next-line no-nested-ternary
-    index < 0 ? images.length - 1 : index > images.length - 1 ? 0 : index;
+  let newIndex = index;
+  if (index < 0) {
+    newIndex = images.length - 1;
+  }
+  if (index > images.length - 1) {
+    newIndex = 0;
+  }
   renderModalImgAttrSet(
     images[newIndex].original,
     images[newIndex].description,
@@ -78,25 +83,6 @@ const renderChangeImg = index => {
 };
 
 // Handlers
-
-const handlerOpenClick = e => {
-  e.preventDefault();
-  renderOpenLightBox(e.target.dataset.source, e.target.getAttribute('alt'));
-  currentImgIndex = Number(e.target.dataset.index);
-};
-
-const handlerCloseClick = e => {
-  if (e.target.dataset.action === 'close-lightbox') {
-    renderCloseLightBox();
-  }
-};
-
-const handlerCloseByOverlay = e => {
-  console.log(e.target);
-  if (modalElem.classList.contains('is-open') && e.currentTarget === e.target) {
-    renderCloseLightBox();
-  }
-};
 
 const handlerKeyboardClick = e => {
   if (modalElem.classList.contains('is-open')) {
@@ -116,6 +102,26 @@ const handlerKeyboardClick = e => {
   }
 };
 
+const handlerOpenClick = e => {
+  e.preventDefault();
+  renderOpenLightBox(e.target.dataset.source, e.target.getAttribute('alt'));
+  currentImgIndex = Number(e.target.dataset.index);
+  document.addEventListener('keyup', handlerKeyboardClick);
+};
+
+const handlerCloseClick = e => {
+  if (e.target.dataset.action === 'close-lightbox') {
+    renderCloseLightBox();
+  }
+};
+
+const handlerCloseByOverlay = e => {
+  console.log(e.target);
+  if (modalElem.classList.contains('is-open') && e.currentTarget === e.target) {
+    renderCloseLightBox();
+  }
+};
+
 // Main sript action
 
 renderGalleryList();
@@ -125,5 +131,3 @@ galleryListElem.addEventListener('click', handlerOpenClick);
 lighBoxCloseBtnElem.addEventListener('click', handlerCloseClick);
 
 lightBoxOverlayElem.addEventListener('click', handlerCloseByOverlay);
-
-document.addEventListener('keyup', handlerKeyboardClick);
